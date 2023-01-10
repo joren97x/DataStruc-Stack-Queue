@@ -1,42 +1,42 @@
 <?php
 //JOREN SUMAGANG && JEBE INOC;
 session_start();
-$sizeOfStack = 5;
+$sizeOfQueue = 5;
 
 
-if(empty($_SESSION['stack'])) {
-    $_SESSION['stack'] = array();
+if(empty($_SESSION['queue'])) {
+    $_SESSION['queue'] = array();
 }
 
-if(isset($_GET['push'])) {
-    if(count($_SESSION['stack']) < $sizeOfStack) {
-        array_push($_SESSION['stack'], $_GET['value']); 
+if(isset($_GET['enqueue'])) {
+    if(count($_SESSION['queue']) < $sizeOfQueue) {
+        array_push($_SESSION['queue'], $_GET['value']); 
     }
     else {
-        echo "Stack if full!";
+        echo "Queue is full!";
     }
 }
 
-if(isset($_GET['pop'])) {
-    if(empty($_SESSION['stack'])) {
-        echo "Stack is Empty! <br>";
+if(isset($_GET['dequeue'])) {
+    if(empty($_SESSION['queue'])) {
+        echo "Queue is Empty! <br>";
     }
     else {
-        array_shift($_SESSION['stack']);
+        array_shift($_SESSION['queue']);
     }
 }
 
 if(isset($_GET['peek'])) {
-    if(empty($_SESSION['stack'])) {
-        echo "Stack is empty!";
+    if(empty($_SESSION['queue'])) {
+        echo "Queue is empty!";
     }
     else {
-        echo $_SESSION['stack'][0];
+        echo $_SESSION['queue'][0];
     }
 }
 
 if(isset($_GET['isEmpty'])) {
-    if(!empty($_SESSION['stack'])) {
+    if(!empty($_SESSION['queue'])) {
         echo "false";
     }
     else {
@@ -45,7 +45,7 @@ if(isset($_GET['isEmpty'])) {
 }
 
 if(isset($_GET['isFull'])) {
-    if(count($_SESSION['stack']) == $sizeOfStack) {
+    if(count($_SESSION['queue']) == $sizeOfQueue) {
         echo "true";
     }
     else {
@@ -53,20 +53,20 @@ if(isset($_GET['isFull'])) {
     }
 }
 
-$stackSession = $_SESSION['stack'];
+$queueSession = $_SESSION['queue'];
 
 
 ?>
 <!DOCTYPE html>
 <head>
-    <title>Joren Stack</title>
+    <title>Joren Queue</title>
 </head>
 <body style="text-align: center;">
 
     <form action="" method="GET">
         <input type="text" style="margin: 20px" name="value" placeholder="Enter Value"> <br>
-        <button name="push">ENQUEUE</button>
-        <button name="pop">DEQUEUE</button>
+        <button name="enqueue">ENQUEUE</button>
+        <button name="dequeue">DEQUEUE</button>
         <button name="peek">PEEK</button>
         <button name="isEmpty">IS EMPTY</button>
         <button name="isFull">IS FULL</button>
@@ -75,8 +75,8 @@ $stackSession = $_SESSION['stack'];
     <div class="container">
         <?php 
 
-            foreach($stackSession as $stack) {
-                echo $stack . "<br>";
+            foreach($queueSession as $queue) {
+                echo $queue . "<br>";
             }
 
         ?>
