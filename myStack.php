@@ -13,7 +13,7 @@ if(isset($_GET['push'])) {
         array_push($_SESSION['stack'], $_GET['value']); 
     }
     else {
-        echo "Stack if full!";
+        echo "Stack is full!";
     }
 }
 
